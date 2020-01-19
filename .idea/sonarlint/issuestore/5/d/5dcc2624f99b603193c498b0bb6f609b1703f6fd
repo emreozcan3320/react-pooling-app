@@ -1,4 +1,4 @@
 
-rjavascript:UnusedVariable"ARemove the declaration of the unused 'setQuestionCount' variable.(Ğ¥É‡ıÿÿÿÿ8ÓÏÀñû-
-kjavascript:S1854"CRemove this useless assignment to local variable "setQuestionCount"(Ğ¥É‡ıÿÿÿÿ8ÓÏÀñû-
-ujavascript:S11173"T"error" hides or potentially hides a variable declared in an outer scope at line 11.(…‰»¹ûÿÿÿÿ
+kjavascript:S1854"CRemove this useless assignment to local variable "setQuestionCount"(Ğ¥É‡ıÿÿÿÿ8ÓÏÀñû-
+ujavascript:S1117&"T"error" hides or potentially hides a variable declared in an outer scope at line 12.(…‰»¹ûÿÿÿÿ
+rjavascript:UnusedVariable"ARemove the declaration of the unused 'setQuestionCount' variable.(Ğ¥É‡ıÿÿÿÿ8ÓÏÀñû-

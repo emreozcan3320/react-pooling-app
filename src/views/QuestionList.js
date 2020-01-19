@@ -4,8 +4,13 @@ import {Link} from "react-router-dom";
 import Question from '../components/Question';
 
 const QuestionList = ({location, history}) => {
-	const questionList = location.state.questionList
-
+	let questionList = ""
+	try {
+		questionList = location.state.questionList
+	} catch (error) {
+		history.push("/")
+	}
+	
 	return (
 		<div>
 			<button

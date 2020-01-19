@@ -1,33 +1,23 @@
 import React, {useState} from 'react';
 
 const Choice = ({choice, votes, url, baseUrl, nextQuestion}) => {
-
 	const [newVotes, setNewVotes] = useState(votes)
-
 	const [error, setError] = useState(null)
 	const [isLoaded, setIsLoaded] = useState(false)
 
-
 	const postVote = (url) => {
-		var string = `https://polls.apiblueprint.org${url}`;
-		console.log(string)
-		fetch(string, {
+		fetch(`https://polls.apiblueprint.org${url}`, {
 			method: 'POST',
 			headers: {
 				"Content-type": "application/json;"
 			}
-
 		}).then((result) => {
 			setIsLoaded(true)
-			console.log("-----Success Result----");
-			console.log(result)
 			setNewVotes(newVotes + 1)
 			nextQuestion()
-		}, error => {
-			console.log("error")
-			console.log(error)
+		}, (err) => {
 			setIsLoaded(true)
-			setError(error)
+			setError(err)
 		})
 	}
 

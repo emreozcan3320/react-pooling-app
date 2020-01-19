@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from "react-router-dom";
+import DateFormatter from './DateFormatter'
 
 const Question = ({questions, history}) => {
 	let counter = 0;
@@ -15,7 +16,9 @@ const Question = ({questions, history}) => {
 						return (
 							<div key={counter} className="question_item">
 								<h3>{counter} => {question.question}</h3>
-								<small>{question.published_at}</small>
+								<DateFormatter
+								inputIsoDate={question.published_at}
+								/>
 								<Link to={question.url}>Detail</Link>
 							</div>
 						)

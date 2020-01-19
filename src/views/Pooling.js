@@ -1,12 +1,18 @@
 import React, {useState, useEffect, useContext} from 'react';
 import Choice from "../components/Choice";
 import {QuestionsContext} from '../providers/QuestionsContext';
+import DateFormatter from '../components/DateFormatter';
 
 const Pooling = ({history, match, location}) => {
 	const [questionCount, setQuestionCount] = useContext(QuestionsContext);
-	const baseUrl = location.state.baseUrl;
+	let baseUrl = ""
+	try {
+		 baseUrl = location.state.baseUrl;
+	} catch (error) {
+		history.push("/")
+	}
+	
 	const questionId = match.params.id
-
 
 	const [error, setError] = useState(null)
 	const [isLoaded, setIsLoaded] = useState(false)
@@ -22,22 +28,10 @@ const Pooling = ({history, match, location}) => {
 		choices:[]
 	})*/
 
-	const dateConverter = (inputDate) => {
-		let date = new Date(inputDate);
-		let year = date.getFullYear();
-		let month = date.getMonth() + 1;
-		let dt = date.getDate();
-		if(dt < 10) {
-			dt = '0' + dt;
-		}
-		if(month < 10) {
-			month = '0' + month;
-		}
-		setPublisheAt(year + '-' + month + '-' + dt);
-	}
-
 	useEffect(() => {
 		if(baseUrl === "") {
+			history.push("/")
+		} else if(questionCount == 0) {
 			history.push("/")
 		} else {
 			fetch(`https://polls.apiblueprint.org${baseUrl}/${questionId}`)
@@ -45,7 +39,7 @@ const Pooling = ({history, match, location}) => {
 			.then((result) => {
 					setIsLoaded(true)
 					setQuestion(result.question)
-					dateConverter(result.published_at)
+					setPublisheAt(result.published_at)
 					setChoices(result.choices)
 				},
 				(error) => {
@@ -65,8 +59,7 @@ const Pooling = ({history, match, location}) => {
 			}
 		})
 	}
-
-
+		
 	if(questionId > questionCount) {
 		return <div>End Of pooling</div>
 	} else if(error) {
@@ -78,7 +71,7 @@ const Pooling = ({history, match, location}) => {
 			<div>
 				<h1>Question Count: {questionCount}</h1>
 				<h3>Question: {question}</h3>
-				<small>{publishedAt}</small>
+				<DateFormatter inputIsoDate={publishedAt}/>
 				{choices.map(item => {
 					return (
 						<Choice

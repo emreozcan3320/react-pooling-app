@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import DateFormatter from '../components/DateFormatter';
 
 const QuestionDetail = ({location}) => {
 	const url = location.pathname;
@@ -23,7 +24,7 @@ const QuestionDetail = ({location}) => {
 		)
 	}, [])
 
-	const deneme = (question) => {
+	const loadChoices = (question) => {
 		if(question.choices) {
 			const html = [];
 			question.choices.map(item => {
@@ -33,7 +34,7 @@ const QuestionDetail = ({location}) => {
 			})
 			return html;
 		} else {
-			return <div>Fuck</div>
+			return <div>Looding..</div>
 		}
 	}
 
@@ -45,8 +46,12 @@ const QuestionDetail = ({location}) => {
 		return (
 			<div>
 				<h3>Question:{question.question}</h3>
-				<small>Published At:{question.published_at}</small>
-				{deneme(question)}
+				<small>Published At:
+					<DateFormatter
+						inputIsoDate={question.published_at}
+					/>
+				</small>
+				{loadChoices(question)}
 			</div>
 		);
 	}
@@ -54,11 +59,3 @@ const QuestionDetail = ({location}) => {
 }
 
 export default QuestionDetail;
-/* {question.choices.map(choice=>{
-                return(
-                    <div>
-                        <p>Choice:{choice.choice} || Vote:{choice.votes}</p>
-                    </div>
-                    
-                )
-            })}*/

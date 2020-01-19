@@ -1,68 +1,33 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# React Pooling Application
 
-## Available Scripts
+This is classic **react application**  so after downloading the repo you should do
+``` 
+ npm install
+ ```  
+to download dependencies and 
+```
+ npm start
+ ```
+ to start application and volaa application will run :)
 
-In the project directory, you can run:
+## Development Notes
 
-### `npm start`
+When I was writing this application, I  learned significant things and If I write it again, I will definitely write **differently.**
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+There are decisions you should take before writing code and I confess, I made some mistakes at this stage.  
+But the main problem I had not enough time to finish the project because of job-related things. 
+Although, It is not an excuse but a fact so I had to work very efficiently. So I searched for similar apps on the internet however I found a few and they are too **old**or **not similar** to the application in my mind although I opened their source code and looked up how they structured their application and I liked some of them.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+After this step, I read some **medium posts**, searched the **best practice** of reactjs and **common mistakes ** done by the developers. As a result, I had some ideas in my mind. 
+As addition, I used **react docs** a lot at the beginning of development for recent best practices and  I used **```react-bootstrap```**  docs a lot at the end for  **responsive design**  by the way react-bootstrap documentation is very good when I compare it **angular material design** docs.
 
-### `npm test`
+Before the starting to write code, I decided on the **application structure** or we can call it **application flow**. 
+So I draw the application pages and decided what should be a **view** , what should be a **component** and which react concepts I could apply for the problems. 
+On the other hand, I knew  I need more but for now, I kept it **simple** and didn't want to** overkill** the application with all the **popular react stuff**.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Some mistake I made in this application are;
+- Not effectively using ```Context.api``` 
+- Some components got bigger than I anticipated when I add bootstrap
+- Not separated component and views at the most efficient way
+- and I am not sure the way I am using  ```fectch```
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify

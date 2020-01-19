@@ -3,13 +3,12 @@ import React, {useState} from 'react';
 import PersonalInformationForm from './PersonalInformationForm';
 import ProfessionalInformationForm from './ProfessionalInformationForm';
 
-const WelcomePage = (props) => {
-
+const WelcomePage = ({history}) => {
 	const [stepCount, setStepCount] = useState(1);
 
 	const nextStep = () => {
 		if(stepCount + 1 === 3) {
-			props.setIsWelcomeEnd(true);
+			history.push('/menu')
 		} else {
 			setStepCount(stepCount + 1)
 		}

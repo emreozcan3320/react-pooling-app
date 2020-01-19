@@ -19,3 +19,9 @@ N
 src/components/QuestionList.js,8/b/8b0fc06b671c7276049458b8c257a26919796743
 M
 src/components/WelcomePage.js,0/e/0eaa01000b1c58fdd1d77e81a9bf6477e150cea6
+A
+src/views/Menu.js,7/2/72326af939fb1690b3811f5285ee3ebb034c5d0c
+I
+src/views/QuestionList.js,f/8/f8f2e47d23103f10fe9b737785458fc4b52f5fde
+D
+src/views/Pooling.js,5/d/5dcc2624f99b603193c498b0bb6f609b1703f6fd

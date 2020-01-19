@@ -1,23 +1,22 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { BrowserRouter as Router} from "react-router-dom";
 import './App.css';
 
-import Header from './components/Header';
-import PageLayout from './components/PageLayout';
+
+import Routes from './Routes';
+
 
 
 function App() {
 
-  const [isWelcomeEnd, setIsWelcomeEnd] = useState(false);
-  const [isSurveyEnd, setIsSurveyEnd] = useState(false);
+  //const [isWelcomeEnd, setIsWelcomeEnd] = useState(false);
+  //const [isSurveyEnd, setIsSurveyEnd] = useState(false);
 
   return (
     <div className="App">
-      <Header/>
-      <PageLayout
-       setIsWelcomeEnd={setIsWelcomeEnd}
-       isWelcomeEnd={isWelcomeEnd}
-       setIsSurveyEnd={setIsSurveyEnd}
-      />
+      <Router>
+           <Routes/> 
+      </Router>
     </div>
   );
 }

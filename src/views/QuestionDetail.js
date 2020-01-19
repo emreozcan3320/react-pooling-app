@@ -1,7 +1,13 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState,Fragment} from 'react';
 import DateFormatter from '../components/DateFormatter';
+import Card from 'react-bootstrap/Card'
+import Container from 'react-bootstrap/Container'
+import Badge from 'react-bootstrap/Badge'
+import Table from 'react-bootstrap/Table'
+import Button from 'react-bootstrap/Button'
+import Spinner from 'react-bootstrap/Spinner'
 
-const QuestionDetail = ({location}) => {
+const QuestionDetail = ({location, history}) => {
 	const url = location.pathname;
 
 	const [error, setError] = useState(null)
@@ -27,9 +33,14 @@ const QuestionDetail = ({location}) => {
 	const loadChoices = (question) => {
 		if(question.choices) {
 			const html = [];
-			question.choices.map(item => {
+			question.choices.map((item,index) => {
 				html.push(
-					<div key={item.choice}>choice:{item.choice} || votes: {item.votes}</div>
+						<tr key={index}>
+							<td>{parseInt(index)+1}</td>
+							<td>{item.choice}</td>
+							<td>{item.votes}</td>
+						</tr>
+					
 				)
 			})
 			return html;
@@ -41,18 +52,42 @@ const QuestionDetail = ({location}) => {
 	if(error) {
 		return <div>Error: {error.message}</div>
 	} else if(!isLoaded) {
-		return <div>Loading...</div>
+		return (
+			<Container fluid={false} className="menu_container">
+				<Spinner animation="border" role="status" className="page_loading_spinner">
+					<span className="sr-only" size="lg">Loading...</span>
+				</Spinner>
+			</Container>
+		)
 	} else {
 		return (
-			<div>
-				<h3>Question:{question.question}</h3>
-				<small>Published At:
-					<DateFormatter
-						inputIsoDate={question.published_at}
-					/>
-				</small>
-				{loadChoices(question)}
-			</div>
+			<Container>
+				<Card className="question_detail_card">
+					<Card.Header as="h5">{question.question}
+						<Badge className="date_formatter_badge" variant="secondary"><DateFormatter
+							inputIsoDate={question.published_at}/></Badge>
+					</Card.Header>
+					<Card.Body>
+						<Table responsive>
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>Choice</th>
+								<th>Vote</th>
+							</tr>
+						</thead>
+						<tbody>
+								{loadChoices(question)}
+						</tbody>
+						</Table>
+						<Button onClick={()=>{history.goBack()}}>Back</Button>
+							
+					</Card.Body>
+				</Card>
+			</Container>
+
+			
+			
 		);
 	}
 

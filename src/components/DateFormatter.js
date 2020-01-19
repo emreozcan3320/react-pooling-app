@@ -12,16 +12,13 @@ const DateFormatter = ({inputIsoDate}) => {
 		if(month < 10) {
 			month = '0' + month;
 		}
-		return <div className="date_formatter">{year}-{month}-{dt}</div>
+		return <span className="date_formatter">{dt}/{month}/{year}</span>
 	}
 
 	if(inputIsoDate.length == 0) {
 		return <div>Loading...</div>
 	} else {
-		return (
-			<div>
-				{dateConverter(inputIsoDate)}
-			</div>
+		return (dateConverter(inputIsoDate)
 		);
 	}
 

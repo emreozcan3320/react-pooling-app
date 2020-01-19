@@ -1,31 +1,47 @@
 import React from 'react';
-import {Link} from "react-router-dom";
 import DateFormatter from './DateFormatter'
+
+import Spinner from 'react-bootstrap/Spinner'
+import Card from 'react-bootstrap/Card'
+import Container from 'react-bootstrap/Container'
+import Badge from 'react-bootstrap/Badge'
+import Button from 'react-bootstrap/Button'
 
 const Question = ({questions, history}) => {
 	let counter = 0;
 
 	if(questions == null) {
-		return <div>Looding..</div>
+		return (
+			<Spinner animation="border" role="status" className="pageLoadingSpinner">
+				<span className="sr-only" size="lg">Loading...</span>
+			</Spinner>
+		)
 	} else {
 		return (
-			<div className="question_list">
+			<Container fluid={false} className="question_list">
 				{
 					questions.map(question => {
 						counter += 1;
 						return (
-							<div key={counter} className="question_item">
-								<h3>{counter} => {question.question}</h3>
-								<DateFormatter
-								inputIsoDate={question.published_at}
-								/>
-								<Link to={question.url}>Detail</Link>
-							</div>
+							<Card className="question_card" key={counter}>
+								<Card.Header className="question_card_header" as="h5">{counter}. Question
+									<Badge className="date_formatter_badge" variant="secondary"><DateFormatter
+										inputIsoDate={question.published_at}/></Badge>
+								</Card.Header>
+								<Card.Body className="question_card_body">
+									<Card.Title>{question.question}</Card.Title>
+									<Button variant="primary" onClick={() => {
+										history.push(question.url)
+									}}>Details</Button>
+								</Card.Body>
+							</Card>
 						)
 					})
 				}
-			</div>
+			</Container>
 		);
+
+
 	}
 }
 

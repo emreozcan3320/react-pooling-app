@@ -11,6 +11,3 @@ export const QuestionPrivider = props => {
 		</QuestionsContext.Provider>
 	);
 }
-
-
-

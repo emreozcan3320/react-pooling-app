@@ -1,5 +1,10 @@
 import React, {useEffect, useState, useContext} from 'react';
 import {QuestionsContext} from '../providers/QuestionsContext';
+import Button from 'react-bootstrap/Button'
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import Spinner from 'react-bootstrap/Spinner'
 
 
 const Menu = ({history}) => {
@@ -57,20 +62,37 @@ const Menu = ({history}) => {
 	if(error) {
 		return <div>Error: {error.message}</div>
 	} else if(!isLoaded) {
-		return <div>Loading...</div>
+		return (
+			<Container fluid={false} className="menu_container">
+				<Spinner animation="border" role="status" className="page_loading_spinner">
+					<span className="sr-only" size="lg">Loading...</span>
+				</Spinner>
+			</Container>
+		)
 	} else {
 		return (
-			<div>
-				<button
-					onClick={redirectToPooling}
-				>Start Pooling
-				</button>
-
-				<button
-					onClick={redirectToQuestionList}
-				>Question List
-				</button>
-			</div>
+			<Container fluid={false} className="menu_container">
+				<Row>
+					<Col xs={12} md={12}>
+						<Button
+							className="menu_pageButton"
+							size="lg"
+							variant="outline-success"
+							onClick={redirectToPooling}
+						>Start Pooling
+						</Button>
+					</Col>
+					<Col xs={12} md={12}>
+						<Button
+							className="menu_pageButton"
+							size="lg"
+							variant="outline-info"
+							onClick={redirectToQuestionList}
+						>Question List
+						</Button>
+					</Col>
+				</Row>
+			</Container>
 		)
 	}
 }

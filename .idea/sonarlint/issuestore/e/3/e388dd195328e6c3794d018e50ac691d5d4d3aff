@@ -1,5 +1,4 @@
 
-kjavascript:S1854
-"CRemove this useless assignment to local variable "isAllFieldFilled"(ışœ“úÿÿÿÿ8Ùˆøóû-
-rjavascript:UnusedVariable
-"ARemove the declaration of the unused 'isAllFieldFilled' variable.(ışœ“úÿÿÿÿ8Ùˆøóû-
+kjavascript:S1854"CRemove this useless assignment to local variable "isAllFieldFilled"(ışœ“úÿÿÿÿ8íÈöıû-
+rjavascript:UnusedVariable"ARemove the declaration of the unused 'isAllFieldFilled' variable.(ışœ“úÿÿÿÿ8íÈöıû-
+Kjavascript:S1128"(Remove this unused import of 'Fragment'.(¿ÇšÖ8íÈöıû-

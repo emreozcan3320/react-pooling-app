@@ -2,12 +2,11 @@ import React, {useState, useEffect, useContext} from 'react';
 import Choice from "../components/Choice";
 import {QuestionsContext} from '../providers/QuestionsContext';
 
-const Pooling = (props) => {
-	console.log("Pooling Component")
-
-	const {history, match} = props
+const Pooling = ({history, match, location}) => {
+	const [questionCount, setQuestionCount] = useContext(QuestionsContext);
+	const baseUrl = location.state.baseUrl;
 	const questionId = match.params.id
-	const [questionCount, setQuestionCount, baseUrl] = useContext(QuestionsContext);
+
 
 	const [error, setError] = useState(null)
 	const [isLoaded, setIsLoaded] = useState(false)
@@ -23,6 +22,20 @@ const Pooling = (props) => {
 		choices:[]
 	})*/
 
+	const dateConverter = (inputDate) => {
+		let date = new Date(inputDate);
+		let year = date.getFullYear();
+		let month = date.getMonth() + 1;
+		let dt = date.getDate();
+		if(dt < 10) {
+			dt = '0' + dt;
+		}
+		if(month < 10) {
+			month = '0' + month;
+		}
+		setPublisheAt(year + '-' + month + '-' + dt);
+	}
+
 	useEffect(() => {
 		if(baseUrl === "") {
 			history.push("/")
@@ -32,10 +45,8 @@ const Pooling = (props) => {
 			.then((result) => {
 					setIsLoaded(true)
 					setQuestion(result.question)
-					setPublisheAt(result.published_at)
+					dateConverter(result.published_at)
 					setChoices(result.choices)
-					//console.log("-----Result----");
-					//console.log(result)
 				},
 				(error) => {
 					setIsLoaded(true)
@@ -44,8 +55,21 @@ const Pooling = (props) => {
 		}
 	}, [questionId])
 
+	const nextQuestion = () => {
+		const nextQuestionId = parseInt(questionId) + 1;
+		history.push({
+			pathname: `/pooling/${nextQuestionId}`,
+			state: {
+				questionCount: questionCount,
+				baseUrl: baseUrl
+			}
+		})
+	}
 
-	if(error) {
+
+	if(questionId > questionCount) {
+		return <div>End Of pooling</div>
+	} else if(error) {
 		return <div>Error: {error.message}</div>
 	} else if(!isLoaded) {
 		return <div>Loading...</div>
@@ -54,7 +78,7 @@ const Pooling = (props) => {
 			<div>
 				<h1>Question Count: {questionCount}</h1>
 				<h3>Question: {question}</h3>
-				<small>publishedAt:{publishedAt}</small>
+				<small>{publishedAt}</small>
 				{choices.map(item => {
 					return (
 						<Choice
@@ -63,6 +87,7 @@ const Pooling = (props) => {
 							votes={item.votes}
 							url={item.url}
 							baseUrl={baseUrl}
+							nextQuestion={nextQuestion}
 						/>
 					)
 				})}

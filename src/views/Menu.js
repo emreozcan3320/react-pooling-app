@@ -39,7 +39,8 @@ const Menu = ({history}) => {
 		history.push({
 			pathname: "/pooling/1",
 			state: {
-				questionCount: questionCount
+				questionCount: questionCount,
+				baseUrl: baseUrl
 			}
 		});
 	}

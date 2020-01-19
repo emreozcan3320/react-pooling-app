@@ -8,6 +8,12 @@ const QuestionList = ({location, history}) => {
 
 	return (
 		<div>
+			<button
+				onClick={() => {
+					history.push("/createQuestion")
+				}}
+			>Create new Question
+			</button>
 			<Question
 				questions={questionList}
 				history={history}

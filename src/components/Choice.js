@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 
-const Choice = ({choice, votes, url, baseUrl}) => {
+const Choice = ({choice, votes, url, baseUrl, nextQuestion}) => {
 
 	const [newVotes, setNewVotes] = useState(votes)
 
@@ -9,47 +9,27 @@ const Choice = ({choice, votes, url, baseUrl}) => {
 
 
 	const postVote = (url) => {
-		var string = `https://polls.apiblueprint.org${baseUrl}/${url}`;
-		console.log("basildi")
-		/*fetch("https://jsonplaceholder.typicode.com/posts",{
-			method:'POST',
-			body: JSON.stringify({
-				title: 'foo',
-				body: 'bar',
-				userId: 1
-			  }),
-			headers:{
-				'Accept': 'application/json',
-    			'Content-Type': 'application/json',
-			}
-
-		}).then(res=>{
-			console.log(res)
-		})*/
-		fetch('https://jsonplaceholder.typicode.com/posts', {
+		var string = `https://polls.apiblueprint.org${url}`;
+		console.log(string)
+		fetch(string, {
 			method: 'POST',
-			body: JSON.stringify({
-				title: 'foo',
-				body: 'bar',
-				userId: 1
-			}),
 			headers: {
-				"Content-type": "application/json; charset=UTF-8"
+				"Content-type": "application/json;"
 			}
-		})
-		.then(response => response.json())
-		.then((result) => {
-				setIsLoaded(true)
-				console.log("-----Result----");
-				console.log(result)
-				setNewVotes(newVotes + 1)
-			},
-			(error) => {
-				setIsLoaded(true)
-				setError(error)
-			})
-	}
 
+		}).then((result) => {
+			setIsLoaded(true)
+			console.log("-----Success Result----");
+			console.log(result)
+			setNewVotes(newVotes + 1)
+			nextQuestion()
+		}, error => {
+			console.log("error")
+			console.log(error)
+			setIsLoaded(true)
+			setError(error)
+		})
+	}
 
 	return (
 		<div>

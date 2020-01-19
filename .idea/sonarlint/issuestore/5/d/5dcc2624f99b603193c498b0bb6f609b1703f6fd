@@ -1,2 +1,6 @@
 
-ujavascript:S1117#"T"error" hides or potentially hides a variable declared in an outer scope at line 11.(…‰»¹ûÿÿÿÿ
+mjavascript:UnusedVariable
+"ARemove the declaration of the unused 'setQuestionCount' variable.(éçýÆ8Ö×Ýíû-
+fjavascript:S1854
+"CRemove this useless assignment to local variable "setQuestionCount"(éçýÆ8Ö×Ýíû-
+ujavascript:S1117("T"error" hides or potentially hides a variable declared in an outer scope at line 12.(…‰»¹ûÿÿÿÿ

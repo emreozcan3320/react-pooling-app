@@ -1,11 +1,11 @@
-import React, {useState, useEffect,useContext} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import Choice from "../components/Choice";
 import {QuestionsContext} from '../providers/QuestionsContext';
 
 const Pooling = (props) => {
 	console.log("Pooling Component")
 
-	const {match, location} = props
+	const {history, match} = props
 	const questionId = match.params.id
 	const [questionCount, setQuestionCount, baseUrl] = useContext(QuestionsContext);
 
@@ -24,27 +24,30 @@ const Pooling = (props) => {
 	})*/
 
 	useEffect(() => {
-		fetch(`https://polls.apiblueprint.org${baseUrl}/${questionId}`)
-		.then(res => res.json())
-		.then((result) => {
-				setIsLoaded(true)
-				setQuestion(result.question)
-				setPublisheAt(result.published_at)
-				setChoices(result.choices)
-				//console.log("-----Result----");
-				//console.log(result)
-			},
-			(error) => {
-				setIsLoaded(true)
-				setError(error)
-			})
+		if(baseUrl === "") {
+			history.push("/")
+		} else {
+			fetch(`https://polls.apiblueprint.org${baseUrl}/${questionId}`)
+			.then(res => res.json())
+			.then((result) => {
+					setIsLoaded(true)
+					setQuestion(result.question)
+					setPublisheAt(result.published_at)
+					setChoices(result.choices)
+					//console.log("-----Result----");
+					//console.log(result)
+				},
+				(error) => {
+					setIsLoaded(true)
+					setError(error)
+				})
+		}
 	}, [questionId])
 
 
 	if(error) {
 		return <div>Error: {error.message}</div>
-	} 
-	else if(!isLoaded) {
+	} else if(!isLoaded) {
 		return <div>Loading...</div>
 	} else {
 		return (
@@ -52,17 +55,17 @@ const Pooling = (props) => {
 				<h1>Question Count: {questionCount}</h1>
 				<h3>Question: {question}</h3>
 				<small>publishedAt:{publishedAt}</small>
-					{choices.map(item => {
-						return (
-							<Choice							
+				{choices.map(item => {
+					return (
+						<Choice
 							key={item.choice}
 							choice={item.choice}
-							votes={item.votes} 
+							votes={item.votes}
 							url={item.url}
 							baseUrl={baseUrl}
-							/>
-						)
-					})}
+						/>
+					)
+				})}
 			</div>
 		)
 	}

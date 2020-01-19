@@ -1,2 +1,6 @@
 
-tjavascript:S1117"S"error" hides or potentially hides a variable declared in an outer scope at line 6.(…‰»¹ûÿÿÿÿ
+tjavascript:S1117"S"error" hides or potentially hides a variable declared in an outer scope at line 7.(…‰»¹ûÿÿÿÿ
+\javascript:S1854
+":Remove this useless assignment to local variable "baseUrl"(âÀöI8Ö×İíû-
+cjavascript:UnusedVariable
+"8Remove the declaration of the unused 'baseUrl' variable.(âÀöI8Ö×İíû-
